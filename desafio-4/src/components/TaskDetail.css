@@ -1,0 +1,25 @@
+#task-detail {
+    width: 25vw;
+    min-height: 10vh;
+    background-color: #846351;
+    color: #FFFFFF;
+    border-radius: 15px;
+}
+
+#task-info {
+    display: grid;
+}
+
+#info-responsible {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+#info-deadline {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+#info-description {
+    grid-column: 2/3;
+}
