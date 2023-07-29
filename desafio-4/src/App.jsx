@@ -10,8 +10,8 @@ const App = () => {
     const [responsible, setResponsible] = useState('Responsável')
     const [deadline, setDeadline] = useState('dd/mm/YYYY')
 
-    const addTask = (e, type) => {
-      e.preventDefault()
+    // Adiciona a tarefa ao Array tasks
+    const addTask = (type) => {
       const taskObject = {
         title: title,
         description: description,
@@ -21,7 +21,14 @@ const App = () => {
       }
       
       setTasks(tasks.concat(taskObject))
+      console.log(`added on ${type}`)
+      setTitle('Fazer')
+      setDescription('Descrição')
+      setResponsible('Responsável')
+      setDeadline('dd/mm/YYYY')
     }
+
+    // Funções handle para acompanhar o onChange dos imputs do Card
 
     const handleTitle = (e) => {
       console.log(e.target.value)
@@ -45,50 +52,50 @@ const App = () => {
 
   return (
     <div id='container'>
-      <div id='a-fazer'>
+      <div id='a-fazer' className='column-task' >
         <h2>A Fazer</h2>
-        <Tasks tasks={tasks} />
-        <Card 
-          addTask={addTask}
-          title={title}
-          handleTitle={handleTitle}
-          description={description}
-          handleDescription={handleDescription}
-          responsible={responsible}
-          handleResponsible={handleResponsible}
-          deadline={deadline}
-          handleDeadline={handleDeadline}
-        />
+        <Tasks tasks={tasks} type='a-fazer' />
+          <Card 
+            addTask={() => addTask('a-fazer')}
+            title={title}
+            handleTitle={handleTitle}
+            description={description}
+            handleDescription={handleDescription}
+            responsible={responsible}
+            handleResponsible={handleResponsible}
+            deadline={deadline}
+            handleDeadline={handleDeadline}
+          />   
       </div>
-      <div id='fazendo'>
+      <div id='fazendo' className='column-task'>
         <h2>Fazendo</h2>
-        <Tasks tasks={tasks} />
-        <Card 
-          addTask={addTask}
-          title={title}
-          handleTitle={handleTitle}
-          description={description}
-          handleDescription={handleDescription}
-          responsible={responsible}
-          handleResponsible={handleResponsible}
-          deadline={deadline}
-          handleDeadline={handleDeadline}
-        />
+        <Tasks tasks={tasks} type='fazendo' />
+            <Card 
+              addTask={() => addTask('fazendo')}
+              title={title}
+              handleTitle={handleTitle}
+              description={description}
+              handleDescription={handleDescription}
+              responsible={responsible}
+              handleResponsible={handleResponsible}
+              deadline={deadline}
+              handleDeadline={handleDeadline}
+            />
       </div>
-      <div id='feito'>
+      <div id='feito' className='column-task'>
         <h2>Feito</h2>
-        <Tasks tasks={tasks}/>
-        <Card 
-          addTask={addTask}
-          title={title}
-          handleTitle={handleTitle}
-          description={description}
-          handleDescription={handleDescription}
-          responsible={responsible}
-          handleResponsible={handleResponsible}
-          deadline={deadline}
-          handleDeadline={handleDeadline}
-        />
+          <Tasks tasks={tasks} type='feito'/>
+          <Card 
+                addTask={() => addTask('feito')}
+                title={title}
+                handleTitle={handleTitle}
+                description={description}
+                handleDescription={handleDescription}
+                responsible={responsible}
+                handleResponsible={handleResponsible}
+                deadline={deadline}
+                handleDeadline={handleDeadline}
+          />
       </div>
     </div>
   )
